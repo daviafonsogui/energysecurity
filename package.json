@@ -2,7 +2,7 @@
   "name": "app-mais-simples",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
     "run": "node server.js"
