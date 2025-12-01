@@ -3,6 +3,7 @@ import path from 'path';
 import https from 'https';
 import express from 'express';
 import bodyParser from 'body-parser';
+import cors from  'cors';
 import { WebSocketServer } from 'ws';
 import { fileURLToPath } from 'url';
 
