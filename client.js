@@ -1,7 +1,7 @@
 import WebSocket from 'ws';
 
 // Endereço do servidor WebSocket local
-const ws = new WebSocket('ws://localhost:3000/ws');
+const ws = new WebSocket('https://energysecurity.onrender.com/ws');
 
 // Quando conectar
 ws.on('open', () => {
