@@ -18,7 +18,6 @@ app.use(cors())
 
 
 
-app.use(express.static("./src"));
 
 // Middlewares
 app.use(bodyParser.json());
