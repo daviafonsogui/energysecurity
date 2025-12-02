@@ -15,8 +15,10 @@ const app = express();
 app.use(express.json())
 app.use(cors())
 
-// HTTPS - caminho para certificados
 
+
+
+app.use(express.static("src"));
 
 // Middlewares
 app.use(bodyParser.json());
