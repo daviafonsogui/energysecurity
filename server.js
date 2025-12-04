@@ -36,8 +36,18 @@ app.get('/catalogo', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/catalogo.html'));
 });
 
+
+app.post('/api/data', (req, res) => {
+  const message = req.body.message;
+
+  console.log('Mensagem recebida:', message);
+
+  res.send({ status: 'OK', received: message });
+});
+
+
 // Inicia servidor HTTPS
-const PORT = 443;
+const PORT = 5000;
 const server = app.listen(PORT, () => {
   console.log(`Servidor HTTPS rodando em https://meu-site.com`);
 });
@@ -61,3 +71,5 @@ wss.on('connection', (ws) => {
 
   ws.send('Conexão WSS estabelecida!');
 });
+
+

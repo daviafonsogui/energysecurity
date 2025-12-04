@@ -5,18 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/style.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <style>
+       input{
+            border: solid 1px black;
+            padding: 10px;
+            border-radius: 10px;
+            width: 100%;
+        }
+        .mid {
+            margin-top: 100px;
+            background-color: transparent !important;
+            color: white;
+        }
+        p a {
+            color: white;
+        }
+    </style>
     <title>Home</title>
 </head>
 <body>
-    <header class="top">
-        <div>Luz Segura</div>
-        <nav>
-            <ul>
-                <li><a href=".">Product</a></li>
-                <li><a href=".">Prices</a></li>
-                <li><a href="./Pages/cadastro.html">Sign in</a></li>
-            </ul>
-        </nav>
+    <div class="bg"></div>
+
+     <header class="top">
+            <nav id="nav-1">
+                <ul>
+                    <li class="Logo">EnergySecurity</li>
+                    <li><i class="bi bi-list"></i></li>
+                    
+                
+                </ul>
+            </nav>
+            <nav id="nav-2">
+                <ul>
+                    <li class="Logo">EnergySecurity</li>
+                    <li><a href=".">Sobre</a></li>
+                    <li><a href=".">Produtos e Serviços</a></li>
+                    <li><a href="./login">Entrar</a></li>
+                    <li><a href="."><i class="bi bi-instagram"></i></a></li>
+                    <li><a href="."><i class="bi bi-facebook"></i></a></li>
+                    <li><a href="."><i class="bi bi-whatsapp"></i></a></li>
+                
+                </ul>
+            </nav>
     </header>
     <section class="mid">
         <article class="flutuante">
@@ -25,12 +55,10 @@
             </header>
             <section>
                 <div class="login">
-                    <p>Usuario</p>
-                    <input type="text" id="inp_name">
-                    <p>Email</p>
-                    <input type="text" id="inp_email">
-                    <p>Senha</p>
-                    <input type="password" id="inp_pass">
+                    
+                    <input type="text" id="inp_name" placeholder="Nome">
+                    <input type="text" id="inp_email" placeholder="Email">
+                    <input type="password" id="inp_pass" placeholder="Senha">
                     <p>Ja possui cadastro? <a href="./login.html">Login</a></p>
                     <button onclick="Cadastro()">Cadastro</button>
                 </div>
@@ -38,7 +66,8 @@
             
         </article>
     </section>        
-    <script src="../src/js/post.js"></script>
+    <script src="./src/js/post.js"></script>
+    <script src="./src/js/app.js"></script>
 </body>
 
 </html>

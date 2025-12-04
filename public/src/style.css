@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 *{
@@ -6,8 +7,8 @@
     font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/*Top style, navs and ul, li
-estilo para navs e ul, li e etc
+/*Top style, #nav-2s and ul, li
+estilo para #nav-2s e ul, li e etc
 */
 .bg {
     position: absolute;
@@ -17,7 +18,7 @@ estilo para navs e ul, li e etc
     background-repeat: no-repeat;
     background-size: 100%;
     z-index: 1;
-    filter: brightness(50%);
+    filter: brightness(20%);
 }
 
 
@@ -36,38 +37,99 @@ svg{
 display: flex;
 flex-direction: row;
     justify-content: space-between;
-    padding: 150px;
+    padding: 100px 150px 0 150px;
     font-size: xx-large;
     color: white;
     z-index: 2;
     
 }
+.top .Menu {
+    display: none;
+}
 .top nav {
     width: 100%;
 } 
-.top nav ul{
+.top nav#nav-2 ul{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
+}
+.top nav#nav-2 li{
+    margin-right: 20px;
+    list-style: none;
+    align-content: center;
+   border-radius: 10px;
+    transition: .5s;
+}
+.top nav#nav-2 li a {
+    text-decoration: none;
+    color: black;
+    transition: .5s;
+
+}
+
+
+
+.top nav#nav-1 {
+    width: 100%;
+    display: none;
+} 
+.top nav#nav-1 ul{
     display: flex;
     justify-content: space-between;
 }
-.top nav li{
+.top nav#nav-1 li{
     margin-right: 20px;
     list-style: none;
+    align-content: center;
+    border-radius: 10px;
+    transition: .5s;
 }
-.top nav li a {
+.top nav#nav-1 li a {
     text-decoration: none;
-    color: white;
+    color: black;
+    transition: .5s;
 }
 
+.top nav#nav-2 li:hover{
+    background-color: rgba(255, 255, 255, 0.877);
+}
+.top nav#nav-2 li:hover a {
+    font-size: 1.3em;
 
+}
 
-.top nav li#Logo{
-    background-color: white;
+.top #nav-1 li.Logo{
+    background-color: rgba(255, 255, 255, 0.3);
     color: black;
     padding: 20px;
     border-radius: 20px;
     font-size: 30pt;
+    transition-timing-function: cubic-bezier(2, 1, 0.22, 1);
+    transition-duration: 10s;
 }
 
+.top #nav-1 li.Logo.animadLogo {
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+.top #nav-2 li.Logo{
+    background-color: rgba(255, 255, 255, 0.3);
+    color: black;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 30pt;
+    transition-timing-function: cubic-bezier(2, 1, 0.22, 1);
+    transition-duration: 10s;
+}
+
+.top #nav-2 li.Logo.animadLogo {
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+
+
+}
 
 /*Estilo para mid*/
 
@@ -83,24 +145,34 @@ flex-direction: row;
     margin: 40px 0 10px 0;
 }
 .mid p {
-    margin-top: 80px;
+    margin-top: 30px;
 }
 .mid .flutuante .login{
-    width: 40%;
+    max-width: 600px;
     display: block;
     margin: 0 auto;
 }
+.mid .flutuante input{
+    margin-bottom: 20px;
+   border: solid 1px transparent;
+    padding: 20px 10px;
+    border-radius: 10px;
+    width: calc(100% - 20px);
+    background-color: rgba(255, 255, 255, 0.26);
+    outline:none;
+}
 
 .mid .flutuante .login button{
-    width: 100px;
+    width: 100%;
     display: block;
     margin: 0px auto;
     margin-top: 50px;
     padding: 10px;
-    background: white;
-    border: 2px solid black;
+    background: rgba(255, 255, 255, 0.26);
+    border: 2px solid transparent;
     transition: .2s;
     cursor: pointer;
+
 }
 
 
@@ -150,11 +222,11 @@ flex-direction: row;
     padding: 20px;
     margin-top: 80px;
 }
-.end nav ul{
+.end #nav-2 ul{
     display: flex;
     justify-content: space-between;
 }
-.end nav li{
+.end #nav-2 li{
     margin-right: 20px;
     list-style: none;
     
@@ -203,7 +275,7 @@ flex-direction: row;
     transition: .2s;
     cursor: pointer;
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1300px) {
   
   .mid .flutuante .images img {
     max-width: 175px;
@@ -213,8 +285,8 @@ flex-direction: row;
     .top {
         padding: 30px;
     }
-    .top nav li{
-        align-content: center;
+    .top #nav-2 li{
+    
         font-size: 20pt;
     }
   
@@ -225,7 +297,7 @@ flex-direction: row;
 }
 
 }
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 1100px) {
   
   .mid .flutuante .images img {
     max-width: 100px;
@@ -237,18 +309,30 @@ flex-direction: row;
   .mid .flutuante p{
     font-size: 1.5em;
   }
-    .mid .flutuante button{
-        font-size: 1.5em;
-        margin: 40px 0;
-    }
-    .top nav li#Logo{
-        display: block;
-        
-    }
-    .top nav li{
-        display: none;
-        
-    }
+  .mid .flutuante button{
+    font-size: 1.5em;
+    margin: 40px 0;
+  }
+  .top #nav-2 {
+    display: none;
+  }
+  .top #nav-1 {
+    display: block !important;
+    position: fixed;
+    width: calc(100vw - 60px) !important;
+  }
+  
+  
+  svg{
+    top: 50px;
+  }
+  .mid{
+    top:50px;
+  }
+  .top .Menu {
+    display: block;
+
+  }
 }
 @media screen and (max-width: 640px) {
   .top{
@@ -265,6 +349,18 @@ flex-direction: row;
 }
 .mid{
     padding: 0;
+    top:70px;
 }
-
+svg{
+    top: 70px;
+}
+.top #nav-1 {
+    display: block !important;
+    position: fixed;
+    width: 100vw !important;
+  }
+.top #nav-1 .Logo {
+    background-color: transparent !important;
+    color:white !important;
+  }
 }
