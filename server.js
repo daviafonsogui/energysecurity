@@ -37,13 +37,17 @@ app.get('/catalogo', (req, res) => {
 });
 
 
-app.post('/api/data', (req, res) => {
-  const message = req.body.message;
+app.post("/api/esp", (req, res) => {
+    const dados = req.body;
 
-  console.log('Mensagem recebida:', message);
+    console.log("Dados recebidos do ESP:", dados);
 
-  res.send({ status: 'OK', received: message });
+    res.json({
+        status: "OK",
+        recebido: dados
+    });
 });
+
 
 
 // Inicia servidor HTTPS
@@ -52,24 +56,5 @@ const server = app.listen(PORT, () => {
   console.log(`Servidor HTTPS rodando em https://meu-site.com`);
 });
 
-// WebSocket seguro (WSS)
-const wss = new WebSocketServer({ server, path: '/ws' });
-
-wss.on('connection', (ws) => {
-  console.log('Cliente conectado via WSS');
-
-  ws.on('message', (message) => {
-    console.log('Mensagem recebida:', message.toString());
-
-    // Enviar a mensagem para todos os clientes conectados
-    wss.clients.forEach((client) => {
-      if (client.readyState === ws.OPEN) {
-        client.send(`Servidor recebeu: ${message}`);
-      }
-    });
-  });
-
-  ws.send('Conexão WSS estabelecida!');
-});
 
 
