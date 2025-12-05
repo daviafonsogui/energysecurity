@@ -47,7 +47,7 @@ app.post('/api/data', (req, res) => {
 
 
 // Inicia servidor HTTPS
-const PORT = 5000;
+const PORT = 443;
 const server = app.listen(PORT, () => {
   console.log(`Servidor HTTPS rodando em https://meu-site.com`);
 });
