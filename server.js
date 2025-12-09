@@ -7,6 +7,9 @@ import cors from  'cors';
 import { WebSocketServer } from 'ws';
 import { fileURLToPath } from 'url';
 
+import router from './private/apiesprouters.js';
+
+
 // Caminhos no ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,6 +25,7 @@ app.use(cors())
 // Middlewares
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(router);
 
 // Rotas HTTP
 app.get('/login', (req, res) => {
@@ -41,6 +45,9 @@ app.post("/api/esp", (req, res) => {
     const dados = req.body;
 
     console.log("Dados recebidos do ESP:", dados);
+
+
+
 
     res.json({
         status: "OK",
