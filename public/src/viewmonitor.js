@@ -75,7 +75,7 @@ setInterval(()=>{
 },1500);
 async function carregarDados() {
     try {
-        const res = await fetch("http://127.0.0.1:3000/api/espdata");
+        const res = await fetch("https://energysecurity.onrender.com/api/espdata");
 
         if (!res.ok) {
             throw new Error("Erro no GET");
