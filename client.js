@@ -44,9 +44,9 @@ function processarLinha(linha) {
 async function enviarDados(jsonFinal) {
     try {
         console.log("📤 Enviando JSON final:", jsonFinal);
-// https://energysecurity.onrender.com/api/esp
+
         const response = await axios.post(
-            "http://127.0.0.1:3000/api/esp",
+            "https://energysecurity.onrender.com/api/esp",
             jsonFinal,
             { timeout: 5000 }
         );

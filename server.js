@@ -49,7 +49,11 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: "*",      // ou coloque o domínio do seu frontend
+    methods: "GET,POST",
+    allowedHeaders: "Content-Type"
+}));
 
 
 
