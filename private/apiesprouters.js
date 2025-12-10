@@ -16,10 +16,7 @@ router.get('/mymonitor', (req, res) => {
 
 
 
-router.post('/api/esp', (req, res) => {
-  console.log(req.body)
-  res.send('Birds home page')
-})
+
 
 
 export default router

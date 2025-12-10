@@ -1,27 +1,86 @@
-import WebSocket from 'ws';
+import { SerialPort } from "serialport";
+import { ReadlineParser } from "@serialport/parser-readline";
+import axios from "axios";
 
-// Endereço do servidor WebSocket local
-const ws = new WebSocket('https://energysecurity.onrender.com/ws');
+// Regex melhorado para ler cada sensor
+const regex = /S(\d+)\s+Corrente:\s*([\d.]+)\s*A\s*\|\s*Pot[eê]ncia:\s*([\d.]+)\s*W/i;
 
-// Quando conectar
-ws.on('open', () => {
-  console.log('Conectado ao servidor WS!');
+// Armazena leituras temporárias
+let buffer = {
+    s1: null,
+    s2: null,
+    s3: null
+};
 
-  // Envia mensagem inicial
-  ws.send('Olá do cliente Node.js!');
+// Processa cada linha recebida
+function processarLinha(linha) {
+    const match = linha.match(regex);
+
+    if (!match) {
+        console.log("⚠ Formato inválido:", linha);
+        return;
+    }
+
+    const sensorId = parseInt(match[1]); // 1, 2 ou 3
+    const corrente = parseFloat(match[2]);
+    const potencia = parseFloat(match[3]);
+    const ativo = potencia > 3;
+
+    const key = `s${sensorId}`;
+
+    buffer[key] = { corrente, potencia, ativo };
+
+    console.log(`📥 Sensor ${key} atualizado:`, buffer[key]);
+
+    // Se já tiver os três sensores → envia JSON
+    if (buffer.s1 && buffer.s2 && buffer.s3) {
+        enviarDados(buffer);
+
+        // zera buffer para próxima leitura
+        buffer = { s1: null, s2: null, s3: null };
+    }
+}
+
+async function enviarDados(jsonFinal) {
+    try {
+        console.log("📤 Enviando JSON final:", jsonFinal);
+// https://energysecurity.onrender.com/api/esp
+        const response = await axios.post(
+            "http://127.0.0.1:3000/api/esp",
+            jsonFinal,
+            { timeout: 5000 }
+        );
+
+        console.log("✅ Enviado com sucesso:", response.data);
+
+    } catch (error) {
+        console.error("❌ Erro ao enviar dados:", error.message);
+    }
+}
+
+// =======================
+// CONFIG PORTA SERIAL
+// =======================
+
+const porta = "/dev/ttyUSB0";
+const baud = 9600;
+
+const serial = new SerialPort({
+    path: porta,
+    baudRate: baud,
 });
 
-// Quando receber mensagem
-ws.on('message', (message) => {
-  console.log('Mensagem recebida do servidor:', message.toString());
+const parser = serial.pipe(new ReadlineParser({ delimiter: "\n" }));
+
+serial.on("open", () => {
+    console.log("📡 Porta serial aberta:", porta);
 });
 
-// Quando houver erro
-ws.on('error', (err) => {
-  console.error('Erro WS:', err.message);
+parser.on("data", (linha) => {
+    console.log("📨 Recebido:", linha.trim());
+    processarLinha(linha.trim());
 });
 
-// Quando a conexão fechar
-ws.on('close', () => {
-  console.log('Conexão fechada!');
+serial.on("error", (err) => {
+    console.error("❌ Erro serial:", err);
 });

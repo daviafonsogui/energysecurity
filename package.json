@@ -1,7 +1,6 @@
 {
   "name": "app-mais-simples",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,9 +10,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.13.2",
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "serialport": "^13.0.0",
     "ws": "^8.18.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daviafonsogui/energysecurity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daviafonsogui/energysecurity/issues"
+  },
+  "homepage": "https://github.com/daviafonsogui/energysecurity#readme",
+  "description": ""
 }

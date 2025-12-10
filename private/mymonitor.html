@@ -3,9 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>.row{display:flex;gap:40px}
+  canvas{background:transparent}</style>
     <title>Document</title>
 </head>
 <body>
-    hi
+    <nav>
+        <p>EnergySecurity</p>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">Placas</a></li>
+            <li><a href="">Sair</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="row">
+        <canvas id="amp-1" width="260" height="160"></canvas>
+        <canvas id="watt-1" width="260" height="160"></canvas>
+        </div>
+        <div class="row">
+        <canvas id="amp-2" width="260" height="160"></canvas>
+        <canvas id="watt-2" width="260" height="160"></canvas>
+        </div>
+        <div class="row">
+        <canvas id="amp-3" width="260" height="160"></canvas>
+        <canvas id="watt-3" width="260" height="160"></canvas>
+        </div>
+    </section>
+
+    <script src="./src/viewmonitor.js"></script>
 </body>
 </html>
