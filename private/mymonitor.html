@@ -4,7 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>.row{display:flex;gap:40px}
-  canvas{background:transparent}</style>
+  canvas{background:transparent}
+  
+/* ======== RESET ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ======== FUNDO PRETO ======== */
+body {
+    background: #000;
+    color: #fff;
+}
+
+/* ======== NAVBAR FIXA ======== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #111;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    z-index: 10;
+}
+
+nav p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+nav ul li a:hover {
+    color: #00d0ff;
+}
+
+/* ======== CONTEÚDO ======== */
+section {
+    padding-top: 90px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+/* ======== LINHA ======== */
+.row {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ======== CARDS ESCUROS ======== */
+.row canvas {
+    background: #151515; /* cor do card */
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(255,255,255,0.08); /* leve brilho */
+    transition: 0.25s;
+    border: 1px solid #222;
+}
+
+.row canvas:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.12);
+    border-color: #333;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+    }
+}
+.row canvas.on {
+    background: hsl(113, 27%, 40%); /* cor do card */
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px hsl(113, 27%, 40%); /* leve brilho */
+    transition: 0.25s;
+    border: 1px solid hsl(113, 27%, 40%);
+}
+
+</style>
     <title>Document</title>
 </head>
 <body>
@@ -18,16 +122,16 @@
     </nav>
     <section>
         <div class="row">
-        <canvas id="amp-1" width="260" height="160"></canvas>
-        <canvas id="watt-1" width="260" height="160"></canvas>
+        <canvas class="off" id="amp-1" width="200" height="200"></canvas>
+        <canvas class="off" id="watt-1" width="200" height="200"></canvas>
         </div>
         <div class="row">
-        <canvas id="amp-2" width="260" height="160"></canvas>
-        <canvas id="watt-2" width="260" height="160"></canvas>
+        <canvas class="off" id="amp-2" width="200" height="200"></canvas>
+        <canvas class="off" id="watt-2" width="200" height="200"></canvas>
         </div>
         <div class="row">
-        <canvas id="amp-3" width="260" height="160"></canvas>
-        <canvas id="watt-3" width="260" height="160"></canvas>
+        <canvas class="off" id="amp-3" width="200" height="200"></canvas>
+        <canvas class="off" id="watt-3" width="200" height="200"></canvas>
         </div>
     </section>
 

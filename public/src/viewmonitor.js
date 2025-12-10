@@ -8,20 +8,20 @@ function gauge(canvasId, min, max, label){
   function ang(v){return (-120+240*((v-min)/(max-min)))*Math.PI/180;}
 
   function draw(){
-    const w=c.width,h=c.height,cx=w/2,cy=h*0.9,r=Math.min(w*0.42,h*0.8);
+    const w=c.width,h=c.height,cx=w/2,cy=h/2,r=Math.min(w*0.42,h*0.8);
     ctx.clearRect(0,0,w,h);
     ctx.lineWidth=10;
-    ctx.strokeStyle="#324";
-    ctx.beginPath();ctx.arc(cx,cy,r,Math.PI,0);ctx.stroke();
+    ctx.strokeStyle="rgba(255, 255, 255, 1)";
+    ctx.beginPath();ctx.arc(cx,cy,r,Math.PI * 2,0);ctx.stroke();
 
     // ponteiro
     const a=ang(disp);
     ctx.save();ctx.translate(cx,cy);ctx.rotate(a+Math.PI/2);
-    ctx.fillStyle="#0ff";
+    ctx.fillStyle="rgba(255, 255, 255, 1)";
     ctx.beginPath();ctx.moveTo(0,-4);ctx.lineTo(r-20,0);ctx.lineTo(0,4);ctx.fill();
     ctx.restore();
 
-    ctx.fillStyle="#0ff";
+    ctx.fillStyle="rgba(255, 255, 255, 1)";
     ctx.font="20px Arial";
     ctx.textAlign="center";
     ctx.fillText(Math.round(disp)+" "+label,cx,cy-r*0.6);
@@ -46,14 +46,14 @@ function gauge(canvasId, min, max, label){
 }
 
 // Instâncias
-const amp1=gauge("amp-1",0,50,"A");
+const amp1=gauge("amp-1",0,50,"mA");
 const watt1=gauge("watt-1",0,2000,"W");
 
 
-const amp2=gauge("amp-2",0,50,"A");
+const amp2=gauge("amp-2",0,50,"mA");
 const watt2=gauge("watt-2",0,2000,"W");
 
-const amp3=gauge("amp-3",0,50,"A");
+const amp3=gauge("amp-3",0,50,"mA");
 const watt3=gauge("watt-3",0,2000,"W");
 amp1.draw();
 watt1.draw();
@@ -64,15 +64,14 @@ watt3.draw();
 
 // Exemplo automático:
 setInterval(()=>{
-    amp1.set(Math.random()*50); 
-    watt1.set(Math.random()*2000)
-    amp2.set(Math.random()*50); 
-    watt2.set(Math.random()*2000)
-    amp3.set(Math.random()*50); 
-    watt3.set(Math.random()*2000)
 
+
+carregarDados()
 
 },1500);
+
+
+
 async function carregarDados() {
     try {
         const res = await fetch("https://energysecurity.onrender.com/api/espdata");
@@ -82,7 +81,6 @@ async function carregarDados() {
         }
 
         const json = await res.json();
-        console.log("Recebido do servidor:", json);
         
         // exemplo usando seus medidores:
         updateFromJSON(json);
@@ -92,4 +90,36 @@ async function carregarDados() {
     }
 }
 
-carregarDados();
+function updateFromJSON(json){
+    console.log(json["s1"].corrente)
+    amp1.set(json["s1"].corrente * 1000); 
+    watt1.set(json["s1"].potencia * 1)
+    amp2.set(json["s2"].corrente * 1000); 
+    watt2.set(json["s2"].potencia * 1)
+    amp3.set(json["s3"].corrente * 1000); 
+    watt3.set(json["s3"].potencia * 1)
+
+    if(json["s1"].ativo) {
+        document.querySelector("#amp-1").className = "on"
+        document.querySelector("#watt-1").className = "on"
+    } else {
+        document.querySelector("#amp-1").className = ""
+        document.querySelector("#watt-1").className = ""
+    }
+     if(json["s2"].ativo) {
+        document.querySelector("#amp-2").className = "on"
+        document.querySelector("#watt-2").className = "on"
+    } else {
+        document.querySelector("#amp-2").className = ""
+        document.querySelector("#watt-2").className = ""
+    }
+
+     if(json["s3"].ativo) {
+        document.querySelector("#amp-3").className = "on"
+        document.querySelector("#watt-3").className = "on"
+    } else {
+        document.querySelector("#amp-3").className = ""
+        document.querySelector("#watt-3").className = ""
+    }
+
+}

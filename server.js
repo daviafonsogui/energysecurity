@@ -94,6 +94,7 @@ app.get("/api/espdata", (req, res) => {
 
 // Inicia servidor HTTPS
 const PORT = process.env.PORT || 443;
+
 const server = app.listen(PORT, () => {
   console.log(`Servidor HTTPS rodando em https://meu-site.com`);
 });

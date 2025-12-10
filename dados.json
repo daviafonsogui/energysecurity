@@ -1,17 +1,17 @@
 {
   "s1": {
-    "corrente": 0.002,
-    "potencia": 0.28,
+    "corrente": 0.006,
+    "potencia": 0.77,
     "ativo": false
   },
   "s2": {
-    "corrente": 0.002,
-    "potencia": 0.25,
+    "corrente": 0.007,
+    "potencia": 0.89,
     "ativo": false
   },
   "s3": {
-    "corrente": 0.005,
-    "potencia": 0.6,
+    "corrente": 0.013,
+    "potencia": 1.68,
     "ativo": false
   }
 }
